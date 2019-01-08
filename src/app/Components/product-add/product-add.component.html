@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <fieldset>
+    <legend>Adding product</legend>
+    <div class="form-field">
+      <label>Name:</label>
+      <input name="Name" formControlName="Name">
+    </div>
+    <div class="form-field">
+      <label>Description:</label>
+      <input name="Description" formControlName="Description">
+    </div>
+    <div class="form-field">
+        <label>Image:</label>
+        <input name="Image" formControlName="Image">
+      </div>
+    <div class="form-field">
+      <label>Price:</label>
+      <input name="Price" formControlName="Price" type="number">
+    </div>
+    <div class="form-field">
+      <label>Category:</label>
+      <select name="Category" formControlName="Category">
+        <option *ngFor="let category of categories">{{category.name}}</option>
+      </select>
+    </div>
+  </fieldset>
+  <div class="form-buttons">
+      <button class="button button-primary" 
+              (click)="Create()">Create</button>
+  </div>
+</form>

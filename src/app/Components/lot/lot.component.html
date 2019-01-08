@@ -1,0 +1,21 @@
+<h3>{{lot?.product.name}}</h3>
+<img src={{img}}/>
+<p>Start price is {{lot?.product.price}}</p>
+<p>{{Sold}}</p>
+<p>{{lot?.product.description}}</p>
+<p>Actual price is {{lot?.actualPrice}}</p>
+<p>Winner is {{lot?.winner.name}}</p>
+<form [formGroup]="form">
+  <fieldset>
+      <legend>Make bet</legend>
+      <div class="form-field">
+          <label>Amount of bet</label>
+          <input name="Bet" formControlName="Bet">
+      </div>
+  </fieldset>
+  <div class="form-buttons">
+      <button class="button button-primary" 
+              (click)="MakeBet()">Make bet</button>
+  </div>
+</form>
+

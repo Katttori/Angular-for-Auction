@@ -1,0 +1,8 @@
+<h2>Active lots</h2>
+<ul>
+  <li *ngFor="let lot of lots">
+    <a routerLink="{{lot.id}}">
+     {{lot?.product.name}} with price {{lot?.actualPrice}} winner {{lot?.winner.name}} trade ends {{lot?.biddingEnd}}
+    </a>
+  </li>
+</ul>

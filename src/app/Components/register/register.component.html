@@ -1,0 +1,23 @@
+<form [formGroup]="form">
+  <fieldset>
+      <legend>Email</legend>
+      <div class="form-field">
+          <label>Email:</label>
+          <input name="Email" formControlName="Email">
+      </div>
+      <div class="form-field">
+          <label>Password:</label>
+          <input name="Password" formControlName="Password" 
+                 type="password">
+      </div>
+      <div class="form-field">
+        <label>Password:</label>
+        <input name="ConfirmPassword" formControlName="ConfirmPassword" 
+               type="password">
+    </div>
+  </fieldset>
+  <div class="form-buttons">
+      <button class="button button-primary" 
+              (click)="Register()">Register</button>
+  </div>
+</form>
