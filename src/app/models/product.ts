@@ -4,7 +4,7 @@ export default class Product {
     description: string;
     price: number;
     img: string;
-    confirmed: boolean;
-    sold: boolean;
+    isConfirmed: boolean;
+    isSold: boolean;
     categoryName: string;
 }

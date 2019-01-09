@@ -26,15 +26,23 @@ storeToken(token: string) {
 getToken() {
   return localStorage.getItem('token');
 }
+getRole() {
+  return localStorage.getItem('role');
+}
 errorHandler(error: Response) {
   console.log(error);
   return throwError(error);
 }
-
+storeRole(role: string) {
+  localStorage.setItem('role', role);
+}
+removeRole() {
+ localStorage.removeItem('role');
+}
 public isAuthenticated(): boolean {
   return this.getToken() !== null;
 }
 removeToken() {
-return localStorage.removeItem('token');
+ localStorage.removeItem('token');
 }
 }

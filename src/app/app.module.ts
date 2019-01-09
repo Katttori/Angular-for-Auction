@@ -17,6 +17,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './token.interceptor';
 import { AccountComponent } from './Components/account/account.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { CategoryEditComponent } from './Components/category-edit/category-edit.component';
+import { UsersListComponent } from './Components/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { RegisterComponent } from './Components/register/register.component';
     LotsCategoryListComponent,
     LoginComponent,
     AccountComponent,
-    RegisterComponent
+    RegisterComponent,
+    CategoryEditComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { LoginService } from './../../Services/login.service';
 import { ActivatedRoute } from '@angular/router';
 import { LotService } from './../../Services/lot.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -14,7 +15,9 @@ export class LotComponent implements OnInit {
   lot: Lot;
   bet: number;
   form: FormGroup;
-  constructor(private fb: FormBuilder, private lotService: LotService, private route: ActivatedRoute) { }
+  isModerator = false;
+  isAuthenticated = false;
+  constructor(private fb: FormBuilder, private lotService: LotService, private route: ActivatedRoute, private authService: LoginService) { }
 
   MakeBet() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -30,6 +33,16 @@ export class LotComponent implements OnInit {
     });
   }
 
+  authenticationCheck() {
+    this.isAuthenticated = this.authService.isAuthenticated();
+  }
+  recognizeRole() {
+    const role = this.authService.getRole();
+    if (role === 'Admin' || role === 'Moderator') {
+      this.isModerator = true;
+      }
+    }
+
   getSingle() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.lotService.getLot(id).subscribe(data => {
@@ -42,11 +55,23 @@ export class LotComponent implements OnInit {
     });
   }
 
+  endBidding() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.lotService.endBidding(id).subscribe(
+      data => console.log(data),
+      error => console.log(error.message)
+    );
+  }
+
   ngOnInit() {
     this.form = this.fb.group({
       Bet: ['', [Validators.required]]
     });
     this.getSingle();
+    this.authenticationCheck();
+    if (this.isAuthenticated) {
+      this.recognizeRole();
+    }
   }
 
 }

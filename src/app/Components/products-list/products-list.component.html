@@ -7,3 +7,25 @@
     </a>
   </li>
 </ul>
+
+<div *ngIf="isModerator">
+  <h3>Products to confirm</h3>
+    <ul>
+        <li *ngFor="let product of toConfirmProducts">
+          <a routerLink="/products/{{product.id}}">
+           {{product.name}} for {{product.price}}$ 
+          </a>
+        </li>
+      </ul>
+</div>
+
+<div *ngIf="isAdmin">
+    <h3>All products</h3>
+      <ul>
+          <li *ngFor="let product of allProducts">
+            <a routerLink="/products/{{product.id}}">
+             {{product.name}} for {{product.price}}$ 
+            </a>
+          </li>
+        </ul>
+  </div>

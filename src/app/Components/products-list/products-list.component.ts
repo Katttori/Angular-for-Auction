@@ -1,3 +1,4 @@
+import { LoginService } from './../../Services/login.service';
 import { ProductService } from './../../Services/product.service';
 import { Component, OnInit } from '@angular/core';
 import Product from '../../models/product';
@@ -9,12 +10,56 @@ import Product from '../../models/product';
 })
 export class ProductsListComponent implements OnInit {
 
+  toConfirmProducts: Product[];
+  allProducts: Product[];
   products: Product[];
-  constructor(private productService: ProductService) { }
+  isModerator = false;
+  isAdmin = false;
+  constructor(private productService: ProductService, private authService: LoginService) { }
 
-  ngOnInit() {
+  recognizeRole() {
+    const role = this.authService.getRole();
+    if (role === 'Admin') {
+      this.isModerator = true;
+      this.isAdmin = true;
+      this.getConfirm();
+      this.getAll();
+    } else {
+      if (role === 'Moderator') {
+        this.isModerator = true;
+        this.getConfirm();
+      }
+    }
+  }
+  getAll() {
+    this.productService.getAll().subscribe(data => {
+      this.allProducts = data;
+     },
+     error => { // This is error part
+      console.log(error.message);
+    },
+    () => {
+        //  This is Success part
+        console.log('all products have got successful');
+        }
+      );
+  }
+  getUsers() {
     this.productService.getProducts().subscribe(data => {
       this.products = data;
+     },
+     error => { // This is error part
+      console.log(error.message);
+    },
+    () => {
+        //  This is Success part
+        console.log('users products have got successful');
+        }
+      );
+  }
+  getConfirm() {
+    this.productService.getToConfirm().subscribe(data => {
+      this.toConfirmProducts = data;
      },
      error => { // This is error part
       console.log(error.message);
@@ -25,5 +70,8 @@ export class ProductsListComponent implements OnInit {
         }
       );
   }
-
+  ngOnInit() {
+    this.getUsers();
+    this.recognizeRole();
+  }
 }

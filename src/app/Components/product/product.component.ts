@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
+import { LoginService } from './../../Services/login.service';
 import { LotService } from './../../Services/lot.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from './../../Services/product.service';
 import { Component, OnInit } from '@angular/core';
 import Product from 'src/app/models/product';
@@ -12,33 +14,48 @@ import { Observable } from 'rxjs';
 })
 export class ProductComponent implements OnInit {
 
-  sold: string;
-  confirmed: string;
+  sold: boolean;
+  confirmed: boolean;
   product: Product;
-  img: string;
-  constructor(private productService: ProductService,  private route: ActivatedRoute, private lotService: LotService) { }
+  editable = false;
 
-  getBools() {
-    if (this.product.sold) {
-      this.sold = 'This product is sold';
-    } else {
-      this.sold = 'This product is not sold';
-    }
-    if (this.product.confirmed) {
-      this.confirmed = 'This product is confirmed';
-    } else {
-      this.confirmed = 'This product is not confirmed';
+  isModerator = false;
+  constructor(private productService: ProductService,
+      private route: ActivatedRoute,
+      private lotService: LotService,
+      private authService: LoginService,
+      private router: Router) { }
+
+  recognizeRole() {
+    const role = this.authService.getRole();
+    if (role === 'Admin' || role === 'Moderator') {
+      this.isModerator = true;
+      }
     }
 
-  }
   get() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.productService.getProduct(id)
     .subscribe(data => {this.product = data; }
       , error => {console.log(error.message); }
       , () => {console.log('Product have got successful');
-    this.getBools();
-    this.img = this.getImg(); });
+      this.confirmed = this.product.isConfirmed;
+      this.sold = this.product.isSold; });
+  }
+
+  edit() {
+    this.editable = true;
+  }
+
+  delete() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.productService.delete(id).subscribe(data => console.log(data), error => console.log(error.message));
+    this.router.navigateByUrl('/products');
+  }
+
+  save() {
+    this.productService.update(this.product).subscribe(data => console.log(data), error => console.log(error.message));
+    this.editable = false;
   }
 
   makeLot() {
@@ -48,11 +65,20 @@ export class ProductComponent implements OnInit {
     error => {console.log(error.message); });
   }
 
+  confirm() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.productService.confirm(id).subscribe(
+      data => console.log(data),
+      error => console.log(error.message)
+    );
+  }
+
   getImg(): string {
     return this.product.img;
   }
   ngOnInit() {
     this.get();
+    this.recognizeRole();
   }
 
 }

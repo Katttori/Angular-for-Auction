@@ -1,0 +1,27 @@
+<h2>Categories</h2>
+<ul>
+  <li *ngFor="let category of categories"
+    [class.selected]="category === selectedCategory"
+    (click)="onSelect(category)">
+     {{category.name}}
+  </li>
+</ul>
+<div>
+  <legend>Adding new category</legend>
+  <label>name:
+<input [(ngModel)]="newName" placeholder="newName">
+  </label>
+  <button (click)="create()">Add</button>
+</div>
+<div *ngIf="selectedCategory">
+ 
+  <h2>{{selectedCategory.name}} Name change</h2>
+  <div><span>id: </span>{{selectedCategory.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedCategory.name" placeholder="name">
+    </label>
+  </div>
+  <div><button (click)="save()">Save</button> </div>
+  <div><button (click)="delete()">Delete</button> </div>
+</div>

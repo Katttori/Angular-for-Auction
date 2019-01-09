@@ -20,6 +20,20 @@ export class ProductService {
     );
   }
 
+  getAll(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.API}/get`).pipe(
+      map(res => res),
+      catchError(this.errorHandler)
+    );
+  }
+
+  getToConfirm(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.API}/get/confirmation`).pipe(
+      map(res => res),
+      catchError(this.errorHandler)
+    );
+  }
+
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.API}/get/${id}`).pipe(
       map(res => res),
@@ -29,6 +43,33 @@ export class ProductService {
 
   create(product: Product): Observable<Object> {
     return this.http.post(`${this.API}/create`, product).pipe(
+      map(res => res),
+      catchError(this.errorHandler)
+    );
+  }
+
+  update(product: Product): Observable<Object> {
+    return this.http.put(`${this.API}/update`, product).pipe(
+      map(res => res),
+      catchError(this.errorHandler)
+    );
+  }
+
+  delete(id: number): Observable<Object> {
+    return this.http.delete(`${this.API}/delete/${id}`).pipe(
+      map(res => res),
+      catchError(this.errorHandler)
+    );
+  }
+
+  updateCategory(id: number, categoryId: number): Observable<Object> {
+    return this.http.put(`${this.API}/update/${id}/${categoryId}`, null).pipe(
+      map(res => res),
+      catchError(this.errorHandler)
+    );
+  }
+  confirm(id: number): Observable<Object> {
+    return this.http.put(`${this.API}/confirm/${id}`, null).pipe(
       map(res => res),
       catchError(this.errorHandler)
     );
