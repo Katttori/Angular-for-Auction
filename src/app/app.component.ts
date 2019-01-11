@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './Services/login.service';
+import { Ng6NotifyPopupService } from 'ng6-notify-popup';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   isModerator = false;
   isAdmin = false;
 
-  constructor(private authService: LoginService) {}
+  constructor(private authService: LoginService, private notify: Ng6NotifyPopupService) {}
 
   recognizeRole() {
     const role = this.authService.getRole();
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit {
   LogOut() {
     this.authService.removeToken();
     this.authService.removeRole();
+    this.notify.show('Log Outed', { position: 'top', duration: '2000', type: 'success' });
     this.checkAuthentication();
   }
   checkAuthentication() {

@@ -2,6 +2,6 @@
 <ul>
   <li *ngFor="let user of users"  
   (click)="onSelect(user)">
-  <p>{{user?.name}} {{user.role}}</p><button (click)="makeModerator()">Make moderator</button> <button (click)="makeAdmin()">Make admin</button> <button (click)="makeUser()">Make user</button>
+  <p>{{user?.name}} {{user?.role}}</p><button (click)="makeModerator()">Make moderator</button> <button (click)="makeAdmin()">Make admin</button> <button (click)="makeUser()">Make user</button>
   </li>
 </ul>

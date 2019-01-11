@@ -3,7 +3,7 @@
   <li *ngFor="let category of categories"
     [class.selected]="category === selectedCategory"
     (click)="onSelect(category)">
-     {{category.name}}
+     {{category?.name}}
   </li>
 </ul>
 <div>

@@ -4,6 +4,7 @@ import { LotService } from './../../Services/lot.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import Lot from 'src/app/models/Lot';
+import { Ng6NotifyPopupService } from 'ng6-notify-popup';
 
 @Component({
   selector: 'app-lot',
@@ -17,19 +18,25 @@ export class LotComponent implements OnInit {
   form: FormGroup;
   isModerator = false;
   isAuthenticated = false;
-  constructor(private fb: FormBuilder, private lotService: LotService, private route: ActivatedRoute, private authService: LoginService) { }
+  sold = false;
+  constructor(private fb: FormBuilder,
+     private lotService: LotService,
+      private route: ActivatedRoute,
+       private authService: LoginService,
+        private notify: Ng6NotifyPopupService) { }
 
   MakeBet() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.bet = this.form.value.Bet;
     this.lotService.makeBet(id, this.bet).subscribe(data => {
-
       },
       error => {
       console.log(error.message);
+      this.notify.show('Input amount of bet', { position: 'top', duration: '2000', type: 'error' });
     },
     () => {
       console.log('bet made');
+      this.notify.show('Bet made', { position: 'top', duration: '2000', type: 'success' });
     });
   }
 
@@ -47,6 +54,7 @@ export class LotComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.lotService.getLot(id).subscribe(data => {
       this.lot = data;
+      this.sold = this.lot.product.isSold;
     }, error => {
       console.log(error.message);
     },
@@ -59,7 +67,10 @@ export class LotComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.lotService.endBidding(id).subscribe(
       data => console.log(data),
-      error => console.log(error.message)
+      error => {
+        console.log(error.message);
+        this.notify.show('Cant end bidding', { position: 'top', duration: '2000', type: 'error' }); },
+      () => this.notify.show('Bidding ended', { position: 'top', duration: '2000', type: 'success' })
     );
   }
 

@@ -1,11 +1,11 @@
 <h3>{{lot?.product.name}}</h3>
-<img src={{img}}/>
+<img src={{lot?.product.image}}/>
 <p>Start price is {{lot?.product.price}}</p>
 <p>{{Sold}}</p>
 <p>{{lot?.product.description}}</p>
 <p>Actual price is {{lot?.actualPrice}}</p>
 <p>Winner is {{lot?.winner.name}}</p>
-<form [formGroup]="form" *ngIf="isAuthenticated">
+<form [formGroup]="form" *ngIf="isAuthenticated && !sold">
   <fieldset>
       <legend>Make bet</legend>
       <div class="form-field">
@@ -18,4 +18,4 @@
               (click)="MakeBet()">Make bet</button>
   </div>
 </form>
-<button *ngIf="isModerator" (click)="endBidding()">End Bidding</button>
+<button *ngIf="isModerator && !sold" (click)="endBidding()">End Bidding</button>

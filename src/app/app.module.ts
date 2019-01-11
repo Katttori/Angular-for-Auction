@@ -19,6 +19,7 @@ import { AccountComponent } from './Components/account/account.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { CategoryEditComponent } from './Components/category-edit/category-edit.component';
 import { UsersListComponent } from './Components/users-list/users-list.component';
+import { Ng6NotifyPopupModule } from 'ng6-notify-popup';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UsersListComponent } from './Components/users-list/users-list.component
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng6NotifyPopupModule.forRoot()
   ],
   providers: [
     {

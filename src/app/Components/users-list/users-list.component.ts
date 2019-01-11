@@ -21,13 +21,22 @@ export class UsersListComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   makeModerator() {
-    this.userService.makeModerator(this.selectedUser.id).subscribe(data => console.log(data), error => console.log(error.message));
+    this.userService.makeModerator(this.selectedUser.id).subscribe(data => console.log(data),
+    error => console.log(error.message),
+    () => this.userService.getSpecialRole(this.selectedUser.id)
+    .subscribe(data => this.selectedUser.role = data, error => console.log(error.message)));
   }
   makeAdmin() {
-    this.userService.makeAdmin(this.selectedUser.id).subscribe(data => console.log(data), error => console.log(error.message));
+    this.userService.makeAdmin(this.selectedUser.id).subscribe(data => console.log(data),
+    error => console.log(error.message),
+    () => this.userService.getSpecialRole(this.selectedUser.id)
+    .subscribe(data => this.selectedUser.role = data, error => console.log(error.message)));
   }
   makeUser() {
-    this.userService.makeUser(this.selectedUser.id).subscribe(data => console.log(data), error => console.log(error.message));
+    this.userService.makeUser(this.selectedUser.id).subscribe(data => console.log(data),
+    error => console.log(error.message),
+    () => this.userService.getSpecialRole(this.selectedUser.id)
+    .subscribe(data => this.selectedUser.role = data, error => console.log(error.message)));
   }
   getUsers() {
     this.userService.getAll().subscribe(data => this.users = data, error => console.log(error.message));

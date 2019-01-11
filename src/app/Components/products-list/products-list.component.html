@@ -3,7 +3,7 @@
 <ul>
   <li *ngFor="let product of products">
     <a routerLink="/products/{{product.id}}">
-     {{product.name}} for {{product.price}}$ 
+     {{product?.name}} for {{product?.price}}$ 
     </a>
   </li>
 </ul>
@@ -13,7 +13,7 @@
     <ul>
         <li *ngFor="let product of toConfirmProducts">
           <a routerLink="/products/{{product.id}}">
-           {{product.name}} for {{product.price}}$ 
+           {{product?.name}} for {{product?.price}}$ 
           </a>
         </li>
       </ul>
@@ -24,7 +24,7 @@
       <ul>
           <li *ngFor="let product of allProducts">
             <a routerLink="/products/{{product.id}}">
-             {{product.name}} for {{product.price}}$ 
+             {{product?.name}} for {{product?.price}}$ 
             </a>
           </li>
         </ul>

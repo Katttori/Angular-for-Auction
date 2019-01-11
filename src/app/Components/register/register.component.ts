@@ -2,6 +2,8 @@ import { RegistrationService } from './../../Services/registration.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import User from '../../models/user';
+import { Router } from '@angular/router';
+import { Ng6NotifyPopupService } from 'ng6-notify-popup';
 
 
 
@@ -17,7 +19,9 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   user: User;
   constructor(private fb: FormBuilder,
-    private registerService: RegistrationService) { }
+    private registerService: RegistrationService,
+    private router: Router,
+    private notify: Ng6NotifyPopupService) { }
 
     Register() {
       this.user = this.form.value;
@@ -29,10 +33,13 @@ export class RegisterComponent implements OnInit {
       },
       error => { // This is error part
         console.log(error.message);
+        this.notify.show('Invalid input', { position: 'top', duration: '2000', type: 'error' });
       },
       () => {
           //  This is Success part
           console.log('register successful');
+          this.notify.show('Registration successful', { position: 'top', duration: '2000', type: 'success' });
+          this.router.navigateByUrl('/login');
           }
         );
     }

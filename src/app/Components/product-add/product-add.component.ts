@@ -4,6 +4,8 @@ import Product from 'src/app/models/product';
 import { Component, OnInit } from '@angular/core';
 import Category from 'src/app/models/category';
 import CategoryService from 'src/app/Services/category.service';
+import { Ng6NotifyPopupService } from 'ng6-notify-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
@@ -15,11 +17,19 @@ export class ProductAddComponent implements OnInit {
   form: FormGroup;
   product: Product;
   categories: Category[];
-  constructor(private fb: FormBuilder, private productService: ProductService, private categoryService: CategoryService) { }
+  constructor(private fb: FormBuilder,
+     private productService: ProductService,
+     private categoryService: CategoryService,
+     private router: Router,
+     private notify: Ng6NotifyPopupService) { }
 
   Create() {
     this.product = this.form.value;
-    this.productService.create(this.product).subscribe(data => {}, error => console.log(error.message), () => console.log('success'));
+    this.productService.create(this.product).subscribe(data => console.log(data),
+     error => { console.log(error.message);
+      this.notify.show('Cant create', { position: 'top', duration: '2000', type: 'error' }); },
+       () => {this.notify.show('Product created', { position: 'top', duration: '2000', type: 'success' });
+       this.router.navigateByUrl('/products'); });
   }
 
   ngOnInit() {

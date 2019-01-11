@@ -4,10 +4,10 @@
 <p *ngIf="!confirmed">This product is not confirmed</p>
 <p *ngIf="sold">This product is sold</p>
 <p>{{product?.description}}</p>
-<button (click)="delete()">Delete</button> 
-<button (click)="edit()">Edit</button> 
-<button (click)="makeLot()">Make lot</button>
-<button *ngIf="isModerator" (click)="confirm()">Confirm</button>
+<button *ngIf="!sold" (click)="delete()">Delete</button> 
+<button *ngIf="!sold" (click)="edit()">Edit</button> 
+<button *ngIf="!sold" (click)="makeLot()">Make lot</button>
+<button *ngIf="isModerator && !sold" (click)="confirm()">Confirm</button>
 
 <div *ngIf="editable" >
 <h2>Change information </h2>

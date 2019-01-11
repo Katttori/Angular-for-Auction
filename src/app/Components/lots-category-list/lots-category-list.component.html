@@ -2,7 +2,7 @@
 <ul>
   <li *ngFor="let lot of lots">
     <a routerLink="/lots/{{lot.id}}">
-     {{lot.product.name}} with price {{lot.actualPrice}} winner {{lot.winner.name}} trade ends {{lot.biddingEnd}}
+     {{lot?.product.name}} with price {{lot?.actualPrice}} winner {{lot?.winner.name}} trade ends {{lot?.biddingEnd}}
     </a>
   </li>
 </ul>

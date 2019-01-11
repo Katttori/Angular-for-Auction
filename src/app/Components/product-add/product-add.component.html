@@ -20,7 +20,7 @@
     <div class="form-field">
       <label>Category:</label>
       <select name="Category" formControlName="Category">
-        <option *ngFor="let category of categories">{{category.name}}</option>
+        <option *ngFor="let category of categories">{{category?.name}}</option>
       </select>
     </div>
   </fieldset>
