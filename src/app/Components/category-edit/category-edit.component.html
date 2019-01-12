@@ -1,5 +1,5 @@
 <h2>Categories</h2>
-<ul>
+<ul class="categories">
   <li *ngFor="let category of categories"
     [class.selected]="category === selectedCategory"
     (click)="onSelect(category)">
@@ -7,21 +7,19 @@
   </li>
 </ul>
 <div>
-  <legend>Adding new category</legend>
-  <label>name:
-<input [(ngModel)]="newName" placeholder="newName">
+  <h3>Adding new category</h3>
+  <label>Name:
+<input [(ngModel)]="newName" placeholder="New Name">
   </label>
   <button (click)="create()">Add</button>
 </div>
 <div *ngIf="selectedCategory">
  
-  <h2>{{selectedCategory.name}} Name change</h2>
-  <div><span>id: </span>{{selectedCategory.id}}</div>
-  <div>
-    <label>name:
+  <h3>{{selectedCategory.name}} Name change</h3>
+  <div><strong>Id: </strong>{{selectedCategory.id}}</div>
+    <label>Name:
       <input [(ngModel)]="selectedCategory.name" placeholder="name">
     </label>
-  </div>
-  <div><button (click)="save()">Save</button> </div>
+  <button (click)="save()">Save</button> 
   <div><button (click)="delete()">Delete</button> </div>
 </div>

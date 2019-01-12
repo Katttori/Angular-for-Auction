@@ -1,31 +1,25 @@
 <h3>Your products</h3>
-<a routerLink="/products/add">Create product</a>
-<ul>
-  <li *ngFor="let product of products">
-    <a routerLink="/products/{{product.id}}">
-     {{product?.name}} for {{product?.price}}$ 
-    </a>
+<button routerLink="/products/add">Create product</button>
+<ul class="products">
+  <li *ngFor="let product of products" routerLink="/products/{{product.id}}">
+    <strong>{{product?.name}}</strong> for <strong>{{product?.price}}$ </strong>
   </li>
 </ul>
 
 <div *ngIf="isModerator">
   <h3>Products to confirm</h3>
-    <ul>
-        <li *ngFor="let product of toConfirmProducts">
-          <a routerLink="/products/{{product.id}}">
-           {{product?.name}} for {{product?.price}}$ 
-          </a>
+    <ul class="products">
+        <li *ngFor="let product of toConfirmProducts" routerLink="/products/{{product.id}}">
+          <strong>{{product?.name}}</strong> for <strong>{{product?.price}}$ </strong> 
         </li>
       </ul>
 </div>
 
 <div *ngIf="isAdmin">
     <h3>All products</h3>
-      <ul>
-          <li *ngFor="let product of allProducts">
-            <a routerLink="/products/{{product.id}}">
-             {{product?.name}} for {{product?.price}}$ 
-            </a>
+      <ul class="products">
+          <li *ngFor="let product of allProducts" routerLink="/products/{{product.id}}">
+              <strong>{{product?.name}}</strong> for <strong>{{product?.price}}$ </strong> 
           </li>
         </ul>
   </div>

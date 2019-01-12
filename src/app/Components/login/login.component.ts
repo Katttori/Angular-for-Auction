@@ -1,9 +1,11 @@
+import { AppComponent } from './../../app.component';
 import { UserService } from './../../Services/user.service';
 import { LoginService } from './../../Services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ng6NotifyPopupService } from 'ng6-notify-popup';
+
 
 
 
@@ -20,7 +22,8 @@ export class LoginComponent implements OnInit {
     private authService: LoginService,
     private usersService: UserService,
     private router: Router,
-    private notify: Ng6NotifyPopupService) { }
+    private notify: Ng6NotifyPopupService,
+    private appComponent: AppComponent) { }
 
   Login(): void {
      const user = this.form.value;
@@ -40,6 +43,7 @@ export class LoginComponent implements OnInit {
                 this.usersService.getRole().subscribe( data => this.authService.storeRole(data));
                 this.notify.show('Login successful', { position: 'top', duration: '2000', type: 'success' });
                 this.router.navigateByUrl('');
+                this.appComponent.checkAuthentication();
                 }
               );
             }

@@ -1,24 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
-  <h1>
-    {{ title }}
-  </h1>
-  <nav>
-    <a routerLink="/categories">Categories</a>
-    <a routerLink="/categories/edit" *ngIf="isModerator">Edit category</a>
-    <a routerLink="/lots">Lots</a>
-    <a routerLink="/products">Products</a>
-    <a routerLink="/users" *ngIf="isAdmin">Users</a>
-    <span *ngIf="!isLoggedIn; else logged">
-    <a routerLink="/login">Log in</a>
-    <a routerLink="/register">Register</a>
-    </span>
-    <ng-template #logged>
-    <a routerLink="/account">Account</a>
-    <a (click) = "LogOut()">Log Out</a>
-  </ng-template>
-    
-    
-    
+<body>
+  <nav class="nav">
+      <div class="nav-div">
+          <a class="home" routerLink="">Home</a>
+              <a class="nav-elem" routerLink="/categories">Categories</a>
+              <a class="nav-elem" routerLink="/categories/edit" *ngIf="isModerator">Edit category</a>
+              <a class="nav-elem" routerLink="/lots">Lots</a>
+              <a class="nav-elem" routerLink="/products">Products</a>
+              <a class="nav-elem" routerLink="/users" *ngIf="isAdmin">Users</a>
+              <a *ngIf="!isLoggedIn; else logged" class="nav-elem logging" routerLink="/login">Log in</a>
+              <a *ngIf="!isLoggedIn" class="nav-elem logging" routerLink="/register">Register</a>
+              <ng-template #logged>
+                <a class="nav-elem logging" (click) = "LogOut()">Log Out</a>
+                <a class="nav-elem logging" routerLink="/account">Account</a>
+              </ng-template>
+            </div>
   </nav>
+  
   <router-outlet></router-outlet>
+</body>
  

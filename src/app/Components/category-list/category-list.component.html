@@ -1,8 +1,8 @@
 <h2>Categories</h2>
 <ul class="categories">
-  <li *ngFor="let category of categories">
-    <a routerLink="/lots/category/{{category.id}}">
+  <li *ngFor="let category of categories" routerLink="/lots/category/{{category.id}}">
+    
      {{category?.name}}
-    </a>
+    
   </li>
 </ul>

@@ -1,8 +1,18 @@
 <h2>Active lots</h2>
-<ul>
-  <li *ngFor="let lot of lots">
-    <a routerLink="{{lot.id}}">
-     {{lot?.product.name}} with price {{lot?.actualPrice}} winner {{lot?.winner.name}} trade ends {{lot?.biddingEnd}}
-    </a>
+<ul class="lots">
+  <li routerLink="{{lot.id}}" *ngFor="let lot of lots">
+    
+     <strong>{{lot?.product.name}}</strong> with price <strong>{{lot?.actualPrice}}</strong> winner <strong>{{lot?.winner.name}}</strong> trade ends <strong>{{lot?.biddingEnd}}</strong>
+    
   </li>
 </ul>
+<div *ngIf="isAdmin">
+<h2>All lots</h2>
+<ul class="lots">
+  <li routerLink="{{lot.id}}" *ngFor="let lot of allLots">
+    
+     <strong>{{lot?.product.name}}</strong> with price <strong>{{lot?.actualPrice}}</strong> winner <strong>{{lot?.winner.name}}</strong>
+    
+  </li>
+</ul>
+</div>

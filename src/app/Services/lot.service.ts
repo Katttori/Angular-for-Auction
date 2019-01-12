@@ -17,6 +17,13 @@ export class LotService {
       catchError(this.errorHandler)
     );
   }
+
+  getAll(): Observable<Lot[]> {
+    return this.http.get<Lot[]>(`${this.API}/get`).pipe(
+      map(res => res),
+      catchError(this.errorHandler)
+    );
+  }
   getWon(): Observable<Lot[]> {
     return this.http.get<Lot[]>(`${this.API}/get/user`).pipe(
       map(res => res),

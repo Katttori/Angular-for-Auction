@@ -1,3 +1,4 @@
+import { LoginService } from './../../Services/login.service';
 import { LotService } from './../../Services/lot.service';
 import { Component, OnInit } from '@angular/core';
 import Lot from 'src/app/models/Lot';
@@ -9,19 +10,48 @@ import Lot from 'src/app/models/Lot';
 })
 export class LotsListComponent implements OnInit {
 
+  allLots: Lot[];
   lots: Lot[];
-  constructor(private lotService: LotService) { }
+  isAdmin = false;
+  constructor(private lotService: LotService, private auth: LoginService) { }
+
+  getActive() {
+    this.lotService.getActiveLots()
+    .subscribe( data => {this.lots = data;
+    }, error => {
+    console.log(error.message);
+  },
+  () => {
+    console.log('lots have got successful');
+  }
+  );
+  }
+
+  getAll() {
+    this.lotService.getAll()
+    .subscribe( data => {this.allLots = data;
+    }, error => {
+    console.log(error.message);
+  },
+  () => {
+    console.log('lots have got successful');
+  }
+  );
+  }
+
+  checkAdmin() {
+    const role = this.auth.getRole();
+    if (role === 'Admin') {
+      this.isAdmin = true;
+    }
+  }
 
   ngOnInit() {
-     this.lotService.getActiveLots()
-      .subscribe( data => {this.lots = data;
-      }, error => {
-      console.log(error.message);
-    },
-    () => {
-      console.log('lots have got successful');
-    }
-    );
+     this.getActive();
+     this.checkAdmin();
+     if (this.isAdmin) {
+       this.getAll();
+     }
   }
 
 }

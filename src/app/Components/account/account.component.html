@@ -1,10 +1,11 @@
 <h2>Hello {{user?.name}}</h2>
-<app-products-list></app-products-list>
+
 <h3>Your won lots</h3>
-<ul>
-  <li *ngFor="let lot of lots">
-    <a routerLink="/lots/{{lot.id}}">
-     {{lot?.product.name}} brought for {{lot?.actualPrice}}
-    </a>
+<ul class="lots">
+  <li *ngFor="let lot of lots" routerLink="/lots/{{lot.id}}">
+    
+     <strong>{{lot?.product.name}}</strong> brought for <strong>{{lot?.actualPrice}}</strong>
+    
   </li>
 </ul>
+<app-products-list></app-products-list>

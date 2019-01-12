@@ -1,0 +1,35 @@
+button {
+    background-color: #343a40; 
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+
+  }
+  button:hover {
+      cursor: pointer;
+      background-color:  #607D8B; 
+  }
+  p.description {
+    word-wrap: break-word;
+      width: 40%;
+      
+  }
+  .alert {
+      background-color: rgba(253, 2, 2, 0.733);
+      width: 250px;
+      color: white;
+      text-align: center;
+      font-size: 20px;
+      padding: 8px;
+      border-radius: 4px;
+  }
+
+  .green {
+    background-color: rgba(35, 165, 31, 0.733) !important;
+  }
+

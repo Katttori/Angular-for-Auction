@@ -10,8 +10,8 @@ import { Ng6NotifyPopupService } from 'ng6-notify-popup';
 export class AppComponent implements OnInit {
   title = 'My internet auction!';
   isLoggedIn: boolean;
-  isModerator = false;
-  isAdmin = false;
+  isModerator: boolean;
+  isAdmin: boolean;
 
   constructor(private authService: LoginService, private notify: Ng6NotifyPopupService) {}
 
@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
       } else {
         if (role === 'Moderator') {
           this.isModerator = true;
+          this.isAdmin = false;
+        } else {
+          this.isModerator = false;
+          this.isAdmin = false;
         }
       }
     }
@@ -33,11 +37,11 @@ export class AppComponent implements OnInit {
     this.notify.show('Log Outed', { position: 'top', duration: '2000', type: 'success' });
     this.checkAuthentication();
   }
-  checkAuthentication() {
+  public checkAuthentication() {
     this.isLoggedIn = this.authService.isAuthenticated();
+    this.recognizeRole();
   }
   ngOnInit() {
     this.checkAuthentication();
-    this.recognizeRole();
   }
 }

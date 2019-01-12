@@ -1,9 +1,10 @@
 <h3>{{product?.name}}</h3>
-<img src={{product?.image}}/>
-<p>Start price is {{product?.price}}</p>
-<p *ngIf="!confirmed">This product is not confirmed</p>
-<p *ngIf="sold">This product is sold</p>
-<p>{{product?.description}}</p>
+<img src={{product?.image}} height="400"/>
+<p>Start price is <strong>{{product?.price}}$</strong></p>
+<p class="alert" *ngIf="!confirmed">This product is not confirmed</p>
+<p class="green alert " *ngIf="sold">This product is sold</p>
+<h4>Description:</h4>
+<p class="description">{{product?.description}}</p>
 <button *ngIf="!sold" (click)="delete()">Delete</button> 
 <button *ngIf="!sold" (click)="edit()">Edit</button> 
 <button *ngIf="!sold" (click)="makeLot()">Make lot</button>

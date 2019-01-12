@@ -18,7 +18,7 @@ export class LotComponent implements OnInit {
   form: FormGroup;
   isModerator = false;
   isAuthenticated = false;
-  sold = false;
+  sold: boolean;
   constructor(private fb: FormBuilder,
      private lotService: LotService,
       private route: ActivatedRoute,

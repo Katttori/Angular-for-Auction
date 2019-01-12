@@ -17,10 +17,9 @@
     padding: .3em 0;
     height: 1.6em;
     border-radius: 4px;
-  }
-  .categories li a {
-    text-decoration: none;
-      
+    font-size: 20px;
+    color: rgb(97, 74, 74);
+    padding-left: 10px;
   }
   .categories li.selected:hover {
     background-color: #BBD8DC !important;
