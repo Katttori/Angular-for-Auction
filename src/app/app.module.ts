@@ -20,7 +20,8 @@ import { RegisterComponent } from './Components/register/register.component';
 import { CategoryEditComponent } from './Components/category-edit/category-edit.component';
 import { UsersListComponent } from './Components/users-list/users-list.component';
 import { Ng6NotifyPopupModule } from 'ng6-notify-popup';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [

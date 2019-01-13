@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
                 this.notify.show('Login successful', { position: 'top', duration: '2000', type: 'success' });
                 this.router.navigateByUrl('');
                 this.appComponent.checkAuthentication();
+                this.appComponent.recognizeRole();
                 }
               );
             }

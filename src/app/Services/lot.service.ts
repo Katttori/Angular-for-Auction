@@ -66,6 +66,13 @@ export class LotService {
     );
   }
 
+  startTimer(id: number): Observable<Object> {
+    return this.http.put(`${this.API}/timer/start/${id}`, null).pipe(
+      map(res => res),
+      catchError(this.errorHandler)
+    );
+  }
+
   delete(id: number): Observable<Object> {
     return this.http.delete(`${this.API}/delete/${id}`, null).pipe(
       map(res => res),

@@ -74,6 +74,17 @@ export class LotComponent implements OnInit {
     );
   }
 
+  startTimer() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.lotService.startTimer(id).subscribe(
+      data => console.log(data),
+      error => {
+        console.log(error.message);
+        this.notify.show('Error in timer', { position: 'top', duration: '2000', type: 'error' }); },
+      () => this.notify.show('Bidding ended', { position: 'top', duration: '2000', type: 'success' })
+    );
+  }
+
   ngOnInit() {
     this.form = this.fb.group({
       Bet: ['', [Validators.required]]

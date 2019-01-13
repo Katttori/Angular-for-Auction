@@ -32,14 +32,7 @@ export class ProductAddComponent implements OnInit {
        this.router.navigateByUrl('/products'); });
   }
 
-  ngOnInit() {
-    this.form = this.fb.group({
-      Name: ['', [Validators.required]],
-      Description: ['', [Validators.required]],
-      Price: ['', [Validators.required]],
-      Category: ['', [Validators.required]],
-      Image: ['', [Validators.required]]
-    });
+  getCategories() {
     this.categoryService.getCategories().subscribe(data => {
       this.categories = data;
      },
@@ -51,6 +44,17 @@ export class ProductAddComponent implements OnInit {
         console.log('categories have got successful');
         }
       );
+  }
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      Name: ['', [Validators.required]],
+      Description: ['', [Validators.required]],
+      Price: ['', [Validators.required]],
+      Category: ['', [Validators.required]],
+      Image: ['', [Validators.required]]
+    });
+    this.getCategories();
   }
 
 }

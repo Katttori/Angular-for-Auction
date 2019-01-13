@@ -9,16 +9,17 @@
 <p>Winner is <strong>{{lot?.winner.name}}</strong></p>
 <form [formGroup]="form" *ngIf="isAuthenticated && !sold">
   <fieldset>
-      <legend>Make bet</legend>
+      <legend><strong>Make bet</strong></legend>
       <div class="form-field">
-          <label>Amount of bet</label>
+          <label>Amount of bet:</label>
           <input name="Bet" formControlName="Bet">
       </div>
   </fieldset>
   <div class="form-buttons">
-      <button class="button button-primary" 
+      <button class="button" 
               (click)="MakeBet()">Make bet</button>
   </div>
 </form>
-<button *ngIf="isModerator && !sold" (click)="endBidding()">End Bidding</button>
+<button class="moders" *ngIf="isModerator && !sold" (click)="endBidding()">End Bidding</button>
+<button class="moders" *ngIf="isModerator && !sold" (click)="startTimer()">Start Timer</button>
 </div>

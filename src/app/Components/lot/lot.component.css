@@ -2,7 +2,7 @@ button {
     background-color: #343a40; 
     border: none;
     color: white;
-    padding: 15px 25px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -45,3 +45,53 @@ button {
     position: relative;
     float: left;
 }
+
+.moders {
+    margin: 2px;
+}
+
+form {
+    
+    border: none;
+    font-size: 18px;
+   
+    width: 400px;
+    height: 130px;
+    align-items: center;
+    background-color:  rgba(156, 203, 226, 0.589);
+    border-radius: 20px;
+    color: black;
+}
+fieldset {
+    border: none;
+   
+}
+
+legend {
+   
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+input {
+    float: right;
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin-top: 4px;
+}
+select {
+    float: right;
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin-top: 4px;
+}
+.form-buttons {
+    float: right;
+    
+}
+.button {
+    margin-right: 10px;
+}
+
