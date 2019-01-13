@@ -71,7 +71,9 @@ export class ProductComponent implements OnInit {
       data => console.log(data),
     error => {console.log(error.message);
       this.notify.show('Cant make lot', { position: 'top', duration: '2000', type: 'error' }); },
-      () => this.notify.show('Lot created', { position: 'top', duration: '2000', type: 'success' }));
+      () => {
+        this.notify.show('Lot created', { position: 'top', duration: '2000', type: 'success' });
+        this.router.navigateByUrl('/lots'); });
   }
 
   confirm() {

@@ -85,6 +85,7 @@ export class LotComponent implements OnInit {
     );
   }
 
+
   ngOnInit() {
     this.form = this.fb.group({
       Bet: ['', [Validators.required]]

@@ -73,12 +73,6 @@ export class LotService {
     );
   }
 
-  delete(id: number): Observable<Object> {
-    return this.http.delete(`${this.API}/delete/${id}`, null).pipe(
-      map(res => res),
-      catchError(this.errorHandler)
-    );
-  }
   errorHandler(error: Response) {
     console.log(error);
         return throwError(error);
