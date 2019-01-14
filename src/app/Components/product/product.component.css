@@ -2,7 +2,7 @@ button {
     background-color: #343a40; 
     border: none;
     color: white;
-    padding: 15px 25px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -33,3 +33,45 @@ button {
     background-color: rgba(35, 165, 31, 0.733) !important;
   }
 
+
+  .form {
+    
+    border: none;
+    font-size: 20px;
+    width: 400px;
+    height: 200px;
+    align-items: center;
+    background-color:  rgba(156, 203, 226, 0.589);
+    border-radius: 20px;
+    color: black;
+}
+label {
+    margin-left: 5px;
+}
+
+input {
+    float: right;
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin-right:5px;
+}
+.form-buttons {
+    float: right;
+    
+}
+h2 {
+    margin:4px; 
+}
+select {
+    float: right;
+    margin-right:5px;
+    width: 60%;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+.save {
+    margin-top: 29px;
+    border-radius: 8px;
+    margin-left: 5px;
+}

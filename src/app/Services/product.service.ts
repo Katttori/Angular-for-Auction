@@ -62,8 +62,8 @@ export class ProductService {
     );
   }
 
-  updateCategory(id: number, categoryId: number): Observable<Object> {
-    return this.http.put(`${this.API}/update/${id}/${categoryId}`, null).pipe(
+  updateCategory(id: number, categoryName: string): Observable<Object> {
+    return this.http.put(`${this.API}/update/${id}/${categoryName}`, null).pipe(
       map(res => res),
       catchError(this.errorHandler)
     );

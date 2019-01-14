@@ -6,5 +6,5 @@ export default class Product {
     img: string;
     isConfirmed: boolean;
     isSold: boolean;
-    categoryName: string;
+    category: string;
 }

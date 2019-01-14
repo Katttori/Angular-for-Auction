@@ -1,3 +1,4 @@
+import CategoryService from 'src/app/Services/category.service';
 import { Location } from '@angular/common';
 import { LoginService } from './../../Services/login.service';
 import { LotService } from './../../Services/lot.service';
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 import Product from 'src/app/models/product';
 import { Observable } from 'rxjs';
 import { Ng6NotifyPopupService } from 'ng6-notify-popup';
+import Category from 'src/app/models/category';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-product',
@@ -19,6 +22,8 @@ export class ProductComponent implements OnInit {
   confirmed: boolean;
   product: Product;
   editable = false;
+  categories: Category[];
+  newCategory: string;
 
   isModerator = false;
   constructor(private productService: ProductService,
@@ -26,7 +31,8 @@ export class ProductComponent implements OnInit {
       private lotService: LotService,
       private authService: LoginService,
       private router: Router,
-      private notify: Ng6NotifyPopupService) { }
+      private notify: Ng6NotifyPopupService,
+      private categoryService: CategoryService) { }
 
   recognizeRole() {
     const role = this.authService.getRole();
@@ -47,6 +53,11 @@ export class ProductComponent implements OnInit {
 
   edit() {
     this.editable = true;
+    this.categoryService.getCategories().subscribe(
+      data => this.categories = data,
+      error => console.log(error.message),
+      () => console.log('categories get success')
+    );
   }
 
   delete() {
@@ -59,9 +70,12 @@ export class ProductComponent implements OnInit {
   }
 
   save() {
+    const id = +this.route.snapshot.paramMap.get('id');
     this.productService.update(this.product).subscribe(data => console.log(data), error => {console.log(error.message);
       this.notify.show('Cant edit', { position: 'top', duration: '2000', type: 'error' }); },
       () => this.notify.show('Edited', { position: 'top', duration: '2000', type: 'success' }));
+      this.productService.updateCategory(id, this.newCategory).subscribe(data => console.log(data),
+      error => console.log(error.message));
     this.editable = false;
   }
 

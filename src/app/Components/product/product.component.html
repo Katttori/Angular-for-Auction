@@ -1,6 +1,7 @@
 <h3>{{product?.name}}</h3>
 <img src={{product?.image}} height="400"/>
 <p>Start price is <strong>{{product?.price}}$</strong></p>
+<p>In category <strong>{{product?.category}}</strong></p>
 <p class="alert" *ngIf="!confirmed">This product is not confirmed</p>
 <p class="green alert " *ngIf="sold">This product is sold</p>
 <h4>Description:</h4>
@@ -10,7 +11,7 @@
 <button *ngIf="!sold" (click)="makeLot()">Make lot</button>
 <button *ngIf="isModerator && !sold" (click)="confirm()">Confirm</button>
 
-<div *ngIf="editable" >
+<div class="form" *ngIf="editable" >
 <h2>Change information </h2>
 <div>
   <label>Name:
@@ -27,6 +28,11 @@
               <input [(ngModel)]="product.description" placeholder="description" >
             </label>
           </div>
-<div><button (click)="save()">Save</button> </div>
+          <div>
+            <select [(ngModel)]="newCategory">
+              <option *ngFor="let category of categories">{{category?.name}}</option>
+            </select>
+          </div>
+<div><button class="save" (click)="save()">Save</button> </div>
 </div>
 

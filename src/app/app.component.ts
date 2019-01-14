@@ -35,8 +35,7 @@ export class AppComponent implements OnInit {
     }
 
   LogOut() {
-    this.authService.removeToken();
-    this.authService.removeRole();
+    this.authService.logOut();
     this.notify.show('Log Outed', { position: 'top', duration: '2000', type: 'success' });
     this.checkAuthentication();
     this.router.navigateByUrl('/login');

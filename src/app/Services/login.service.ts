@@ -19,6 +19,14 @@ return this.http.post(`${this.API}/token`, userData , { headers: reqHeader })
     catchError( this.errorHandler)
 );
 }
+logOut() {
+  this.removeRole();
+  this.removeToken();
+  this.http.post(`${this.API}/logout`, null).pipe(
+    map(res => res),
+    catchError(this.errorHandler)
+  );
+}
 
 storeToken(token: string) {
   localStorage.setItem('token', token);
