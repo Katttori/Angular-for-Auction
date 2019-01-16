@@ -71,11 +71,11 @@ export class ProductComponent implements OnInit {
 
   save() {
     const id = +this.route.snapshot.paramMap.get('id');
+    this.productService.updateCategory(id, this.newCategory).subscribe(data => console.log(data),
+      error => console.log(error.message));
     this.productService.update(this.product).subscribe(data => console.log(data), error => {console.log(error.message);
       this.notify.show('Cant edit', { position: 'top', duration: '2000', type: 'error' }); },
       () => this.notify.show('Edited', { position: 'top', duration: '2000', type: 'success' }));
-      this.productService.updateCategory(id, this.newCategory).subscribe(data => console.log(data),
-      error => console.log(error.message));
     this.editable = false;
   }
 
